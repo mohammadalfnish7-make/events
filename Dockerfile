@@ -10,7 +10,7 @@ RUN apk add --no-cache libc6-compat openssl
 COPY package.json package-lock.json* ./
 
 # Install all dependencies (including dev)
-RUN npm ci
+RUN npm ci --include=dev
 
 # Copy prisma schema for generation
 COPY prisma ./prisma/
