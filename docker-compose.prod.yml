@@ -5,9 +5,9 @@ services:
     container_name: events-db-prod
     restart: always
     environment:
-      POSTGRES_USER: ${DB_USER:-events_user}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-events_password}
-      POSTGRES_DB: ${DB_NAME:-events_db}
+      POSTGRES_USER: events_user
+      POSTGRES_PASSWORD: events_password
+      POSTGRES_DB: events_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -27,13 +27,13 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=${DATABASE_URL:-postgresql://${DB_USER:-events_user}:${DB_PASSWORD:-events_password}@db:5432/${DB_NAME:-events_db}}
+      - DATABASE_URL=${DATABASE_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
     volumes:
       - uploads:/app/public/uploads
     ports:
-      - "${PORT:-3000}:3000"
+      - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
