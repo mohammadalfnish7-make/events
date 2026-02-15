@@ -1,0 +1,97 @@
+{
+    "common": {
+        "siteName": "Event Planning",
+        "loading": "Loading...",
+        "error": "Something went wrong",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "search": "Search",
+        "noResults": "No results found",
+        "viewAll": "View All"
+    },
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "portfolio": "Portfolio",
+        "contact": "Contact",
+        "about": "About Us",
+        "admin": "Dashboard"
+    },
+    "home": {
+        "hero": {
+            "title": "Create Unforgettable Events",
+            "subtitle": "We bring your vision to life with exceptional event planning and coordination",
+            "cta": "Explore Services"
+        },
+        "services": {
+            "title": "Our Services",
+            "subtitle": "From intimate gatherings to grand celebrations"
+        },
+        "portfolio": {
+            "title": "Our Work",
+            "subtitle": "Browse our featured events"
+        },
+        "cta": {
+            "title": "Ready to Plan Your Event?",
+            "subtitle": "Contact us today and let's make it happen",
+            "button": "Get Started"
+        }
+    },
+    "services": {
+        "title": "Our Services",
+        "description": "Discover our comprehensive range of event planning services",
+        "learnMore": "Learn More",
+        "priceFrom": "Starting from"
+    },
+    "portfolio": {
+        "title": "Portfolio",
+        "description": "Explore our past events and celebrations",
+        "viewDetails": "View Details"
+    },
+    "contact": {
+        "title": "Contact Us",
+        "description": "Get in touch with our team",
+        "form": {
+            "name": "Your Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "message": "Your Message",
+            "submit": "Send Message"
+        },
+        "info": {
+            "address": "Address",
+            "phone": "Phone",
+            "email": "Email",
+            "hours": "Working Hours"
+        }
+    },
+    "footer": {
+        "rights": "All rights reserved",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+    },
+    "admin": {
+        "dashboard": "Dashboard",
+        "services": "Services",
+        "media": "Media",
+        "settings": "Settings",
+        "logout": "Logout",
+        "welcome": "Welcome back",
+        "stats": {
+            "services": "Total Services",
+            "media": "Media Files",
+            "views": "Page Views"
+        }
+    },
+    "auth": {
+        "login": "Login",
+        "email": "Email",
+        "password": "Password",
+        "loginButton": "Sign In",
+        "loading": "Logging in...",
+        "invalidCredentials": "Invalid email or password"
+    }
+}

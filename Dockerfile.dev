@@ -1,0 +1,32 @@
+# ===== Development Stage =====
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies for building
+RUN apk add --no-cache libc6-compat openssl
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install all dependencies (including dev)
+RUN npm install
+
+# Copy prisma schema for generation
+COPY prisma ./prisma/
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Copy source code
+COPY . .
+
+# Entrypoint runs npm install + prisma generate so node_modules volume has all deps
+COPY docker-entrypoint.dev.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+# Expose port
+EXPOSE 3000
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["npm", "run", "dev"]

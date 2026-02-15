@@ -1,0 +1,50 @@
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: events-db-prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-events_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-events_password}
+      POSTGRES_DB: ${DB_NAME:-events_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U events_user -d events_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - events-network
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: events-app-prod
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://${DB_USER:-events_user}:${DB_PASSWORD:-events_password}@db:5432/${DB_NAME:-events_db}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
+    volumes:
+      - uploads:/app/public/uploads
+    ports:
+      - "${PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - events-network
+
+volumes:
+  postgres_data:
+  uploads:
+
+
+networks:
+  events-network:
+    driver: bridge

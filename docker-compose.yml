@@ -1,0 +1,43 @@
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: events-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: events_user
+      POSTGRES_PASSWORD: events_password
+      POSTGRES_DB: events_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U events_user -d events_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application (Development)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: events-app
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://events_user:events_password@db:5432/events_db
+      - NEXTAUTH_SECRET=your-super-secret-key-change-in-production
+      - NEXTAUTH_URL=http://localhost:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
