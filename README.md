@@ -32,7 +32,7 @@ Visit: http://localhost:3000
 
 **Admin Login:**
 - Email: `admin@events.sa`
-- Password: `admin123`
+- Password: `alwkdlwkd`
 
 ### Production
 
