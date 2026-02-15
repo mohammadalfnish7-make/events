@@ -26,10 +26,10 @@ services:
     container_name: events-app-prod
     restart: always
     environment:
-      - NODE_ENV=production
-      - DATABASE_URL=${DATABASE_URL}
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      NODE_ENV: production
+      DATABASE_URL: postgresql://events_user:events_password@db:5432/events_db
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
     volumes:
       - uploads:/app/public/uploads
     ports:
