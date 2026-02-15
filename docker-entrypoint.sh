@@ -7,6 +7,7 @@ echo "Running database migrations..."
 
 # Seed database (only if needed - safe to run multiple times)
 echo "Seeding database..."
+export PATH="/app/node_modules/.bin:$PATH"
 ./node_modules/.bin/prisma db seed || true
 
 # Start the application
